@@ -1,10 +1,10 @@
 # Senior-Project
 ## Goals
 * Create a playable side scrolling video game
-* Refactor the code so that it is more flexible. Use of specific APIs, such as Swing or OpenGL for graphics, or keyboard or game pad for input, should be hidden behind an abstraction, so that the rest of the code does not have to know which one is being used.
+* Refactor the code so that it is more flexible. Use of specific APIs, such as Swing or OpenGL for graphics, or keyboard or game pad for input, should be hidden behind an abstraction, so that the rest of the code does not have to know which one is being used
 
 ## Plot
-* The player must go a few levels spread throughout the world, collecting a story item in each one
+* The player must go through a few levels spread throughout the world, collecting a story item in each one
 * The player may complete the levels in any order, except the last one
 * The player may move freely from one level to the others
 * The levels will consist of a series of rooms, in which the player must figure out how to open the doors to get to the next room. The plot item that the player is after will be in a deep room in the dungeon.
@@ -23,7 +23,7 @@
 * Transitions between levels should look similar to transitions between rooms in which the door is on the wall behind the player. The sreen should fade to black, and then fade into the requested room of the next level.
 * The way I am thinking about it right now, all of the reading from the disk for the level should happen durng this transition, as the screen will be black. This would avoid any potential stuttering or freezing up during room transitions, especially the horizontal sliding ones, in which the screen is not faded to black.
 ### Map Editor
-* Instead of entering map data by hand in a text file, I should make a gui so that I could use the mouse to make maps. Also, using an SQLite data base to hold everything would be easier to maintain than trying to stitch together a bunch of folders, zip files, text files, xml files, and other things.
+* Instead of entering map data by hand in a text file, I should make a gui so that I could use the mouse to make maps. Also, using an SQLite data base to hold everything would be easier to maintain than trying to stitch together a bunch of folders, zip files, text files, xml files, and other things. Would things like images and sound be stored in the data base as well, or somewhere else?
 * I was thinking of using either Java Swing or JavaFX for the gui.
 ### Animations
-* I am not sure if it would be more trouble than it is worth, but I was wondering how to make it so that when the player holds an item, such as a sword, the player's hand will be covering part of the sword, and the sword would be covering part of the player's body. I could just draw two versions of every sprite, one holding the sword, and the other empty-handed, but I was wondering if there is a way to make some kind of "attach  points", 
+* I am not sure if it would be more trouble than it is worth, but I was wondering how to make it so that when the player holds an item, such as a sword, the player's hand will be covering part of the sword, and the sword would be covering part of the player's body. I could just draw two versions of every sprite, one holding the sword, and the other empty-handed, but I was wondering if there is a way to make some kind of "attach  points", so that there could be just a walking animation for the player, but each frame of it would have a position for the sword sprite, kind of like an actor holding a prop. A bit of a problem with this is that I can't just draw the sword on top of the player, because it would also be on top of the player's hand. I was thinking of maybe setting up the animations so that they are made of limbs, and each limb's contents could be a sprite from the player's sprite sheet, or a sprite from a global, shared, prop sheet. Then, to achieve the effect of the player holding the sword, I would have 3 limbs: player body, player sword, and player hand/arm. I would then draw them in that order. If I wanted different types/colors of sword, I could just swap out the contents of the sword slot. If I were to animate each body part separately, I would need some way of making sure everything stays synced up. I was thinking maybe each limb could have what frame number of its contents to show?
