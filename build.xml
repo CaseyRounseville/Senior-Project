@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project name="Simple Game 12" basedir=".">
+	<target name="compile">
+		<javac srcdir="src" destdir="bin" />
+	</target>
+	
+	<target name="run">
+		<java classname="main.GameRunner12" classpath="bin" fork="true" />
+	</target>
+</project>
