@@ -1,9 +1,9 @@
 package managers;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import input.InputDevice;
+import input.AWTKeyboard;
 
-public final class GamePad implements KeyListener {
+/*public final class GamePad implements KeyListener {
 	
 	public static boolean[] buttons_currentFrame = new boolean[8];
 	public static boolean[] buttons_lastFrame = new boolean[8];
@@ -104,4 +104,61 @@ public final class GamePad implements KeyListener {
 		}
 	}
 	
+}*/
+
+public final class GamePad {
+	public static final int BUTTON_START = 0;
+	
+	//public static boolean enabled = true;
+	
+	public static final int BUTTON_UP = 1;
+	public static final int BUTTON_DOWN = 2;
+	public static final int BUTTON_LEFT = 3;
+	public static final int BUTTON_RIGHT = 4;
+	
+	public static final int BUTTON_X = 5;
+	public static final int BUTTON_1 = 6;
+	public static final int BUTTON_3 = 7;
+	
+	private static final InputDevice inputDevice = new AWTKeyboard();
+	
+	public static boolean wasJustPressed(int btn) {
+		return inputDevice.isDown(btn) && !inputDevice.wasDown(btn);
+	}
+	
+	public static boolean wasDownLastFrame(int btn) {
+		return inputDevice.wasDown(btn);
+	}
+	
+	public static boolean isDownNow(int btn) {
+		return inputDevice.isDown(btn);
+	}
+	
+	public InputDevice getInputDevice() {
+		return inputDevice;
+	}
+	
+	public static void tick() {
+		inputDevice.poll();
+	}
+	
+	public static void releaseAll() {
+		inputDevice.releaseAll();
+	}
+	
+	/*public static void press(int key) {
+		buttons_currentFrame[key] = true;
+	}
+	
+	public static void release(int key) {
+		buttons_currentFrame[key] = false;
+	}
+	
+	public static void disable() {
+		enabled = false;
+	}
+	
+	public static void enable() {
+		enabled = true;
+	}*/
 }
