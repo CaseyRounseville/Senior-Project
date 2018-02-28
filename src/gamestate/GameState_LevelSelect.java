@@ -74,19 +74,19 @@ public class GameState_LevelSelect extends GameState {
 			GameStateManager.changeGameState(new GameState_LevelSelect());
 			break;
 		case 3:
-			GameStateManager.changeGameState(new GameState_Level1());
+			GameStateManager.changeGameState(new GameState_FileSelect());
 			break;
 		case 4:
-			GameStateManager.changeGameState(new GameState_Level2());
+			GameStateManager.changeGameState(new GameState_FileSelect());
 			break;
 		case 5:
-			GameStateManager.changeGameState(new GameState_Level3());
+			GameStateManager.changeGameState(new GameState_FileSelect());
 			break;
 		case 6:
 			GameStateManager.changeGameState(new GameState_GameComplete());
 			break;
 		case 7:
-			GameStateManager.changeGameState(new GameState_GameOver(this));
+			GameStateManager.changeGameState(new GameState_GameOver());
 		default:
 			// do nothing
 		}
