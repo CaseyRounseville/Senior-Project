@@ -12,83 +12,39 @@ import managers.GameStateManager;
 import managers.ResourceManager;
 import map.TileMap;
 import sprite.SpriteSheet;
-import text.MenuBox;
+
+import menu.Menu;
+import menu.LevelSelectMenu;
 
 public class GameState_LevelSelect extends GameState {
 	
-	// menu options
-	private String[] options = {
-		"TITLE SCREEN", 
-		"START MENU",
-		"LEVEL SELECT",
-		"LEVEL 1", 
-		"LEVEL 2",
-		"LEVEL 3",
-		"GAME COMPLETE",
-		"GAME OVER"
-	};
-	
-	// menuBox
-	private MenuBox menuBox;
+	// menu
+	private Menu levelSelectMenu;
 	
 	// tile map
 	private TileMap background_tiles;
-	
-	// selected choice
-	//private int currentChoice;
 
 	public GameState_LevelSelect() {
 		super();
 		background_tiles = new TileMap("spritesheet_startmenu", "tilemap_startmenu");
 		//currentChoice = 0;
-		menuBox = new MenuBox("LEVEL SELECT:", options, 60, 40);
+		levelSelectMenu = new LevelSelectMenu();
 	}
 
 	@Override
 	public void draw(Graphics2D g) {
 		background_tiles.draw(g);
-		menuBox.draw(g);
+		levelSelectMenu.draw(g);
 	}
 
 	@Override
 	public void processInput() {
 		if (GamePad.wasJustPressed(GamePad.BUTTON_UP)) {
-			menuBox.decreaseCurrentChoice();
+			levelSelectMenu.decreaseCurrentChoice();
 		} else if (GamePad.wasJustPressed(GamePad.BUTTON_DOWN)) {
-			menuBox.increaseCurrentChoice();
+			levelSelectMenu.increaseCurrentChoice();
 		} else if (GamePad.wasJustPressed(GamePad.BUTTON_START)) {
-			makeDecision();
-		}
-	}
-	
-	private void makeDecision() {
-		int decision = menuBox.getCurrentChoice();
-		switch (decision) {
-		case 0:
-			GameStateManager.changeGameState(new GameState_TitleScreen());
-			break;
-		case 1:
-			GameStateManager.changeGameState(new GameState_StartMenu());
-			break;
-		case 2:
-			GameStateManager.changeGameState(new GameState_LevelSelect());
-			break;
-		case 3:
-			GameStateManager.changeGameState(new GameState_FileSelect());
-			break;
-		case 4:
-			GameStateManager.changeGameState(new GameState_FileSelect());
-			break;
-		case 5:
-			GameStateManager.changeGameState(new GameState_FileSelect());
-			break;
-		case 6:
-			GameStateManager.changeGameState(new GameState_GameComplete());
-			break;
-		case 7:
-			GameStateManager.changeGameState(new GameState_GameOver());
-		default:
-			// do nothing
+			levelSelectMenu.makeDecision();
 		}
 	}
 	

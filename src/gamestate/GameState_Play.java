@@ -60,7 +60,7 @@ public class GameState_Play extends GameState {
 	if (player.isDead()) {
 	    if (player.getCurrentAnimation_animation().hasBeenPlayedOnce()) {
 		if (player.getLives() == 0) {
-		    GameStateManager.changeGameState(new GameState_GameOver(this));
+		    GameStateManager.changeGameState(new GameState_GameOver());
 		} else {
 		    player.reset();
 		    player.setXTile(2.0f);

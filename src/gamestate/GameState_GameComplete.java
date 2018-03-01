@@ -6,26 +6,21 @@ import managers.GameStateManager;
 import managers.GamePad;
 import managers.ResourceManager;
 
-import text.MenuBox;
-
 import map.TileMap;
+
+import menu.Menu;
+import menu.YouWinMenu;
 
 public class GameState_GameComplete extends GameState {
 	
-	// options
-	private String[] options = {
-		"OK"
-	};
-	
-	// menu Box
-	private MenuBox menu;
+	private Menu youWinMenu;
 	
 	// tile map
 	private TileMap background_tiles;
 	
 	public GameState_GameComplete() {
 		super();
-		menu = new MenuBox("YOU WIN", options, 60, 100);
+		youWinMenu = new YouWinMenu();
 		background_tiles = new TileMap(
 			"spritesheet_startmenu",
 			"tilemap_startmenu"); 
@@ -34,7 +29,7 @@ public class GameState_GameComplete extends GameState {
 	@Override
 	public void draw(Graphics2D g) {
 		background_tiles.draw(g);
-		menu.draw(g);
+		youWinMenu.draw(g);
 
 	}
 	
@@ -58,16 +53,7 @@ public class GameState_GameComplete extends GameState {
 	public void processInput() {
 		// there is only one option
 		if (GamePad.wasJustPressed(GamePad.BUTTON_START)) {
-			makeDecision();
+			youWinMenu.makeDecision();
 		}
-	}
-	
-	private void makeDecision() {
-		/*
-		how to handle save data here?
-		should ask the player to save?
-		*/
-		
-		GameStateManager.changeGameState(new GameState_TitleScreen());
 	}
 }
