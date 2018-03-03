@@ -31,7 +31,7 @@ public class Screen extends JPanel {
 	// g.scale(SCALE, SCALE);
 	setFocusable(true);
 	requestFocus();
-	addKeyListener(new GamePad());
+	addKeyListener((KeyListener) (new GamePad()).getInputDevice());
 	image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	g = (Graphics2D) image.getGraphics();
 	//g.setBackground(new Color(20, 50, 130));
